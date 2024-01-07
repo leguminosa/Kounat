@@ -1,7 +1,9 @@
 package main
 
-import "log"
+import (
+	"github.com/leguminosa/kounat/internal/app/kounatapi/cmd"
+)
 
 func main() {
-	log.Println("Hello, World!")
+	cmd.Main()
 }
