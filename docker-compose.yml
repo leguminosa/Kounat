@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  kounat_database:
+    image: postgres:16.1-alpine
+    container_name: kounat_database
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: kounat_db
+      POSTGRES_USER: kounat_user
+      POSTGRES_PASSWORD: magical_password
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - ./schema/kounat_db:/docker-entrypoint-initdb.d
+      - kounat_postgres:/var/lib/postgresql/data
+    networks:
+      - backend
+
+volumes:
+  kounat_postgres:
+    driver: local
+
+networks:
+  backend:
+    driver: bridge
