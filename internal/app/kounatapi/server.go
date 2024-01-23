@@ -15,7 +15,10 @@ type (
 	}
 )
 
-func NewServer(e *echo.Echo, cfg *config.Config) Server {
+func NewServer(
+	cfg *config.Config,
+	e *echo.Echo,
+) Server {
 	return &serverImpl{
 		echo: e,
 		port: cfg.API.Port,

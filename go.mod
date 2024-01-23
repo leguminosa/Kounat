@@ -3,6 +3,7 @@ module github.com/leguminosa/kounat
 go 1.20
 
 require (
+	github.com/google/wire v0.5.0
 	github.com/jackc/pgx/v5 v5.5.1
 	github.com/labstack/echo/v4 v4.11.4
 )

@@ -26,7 +26,7 @@ func (s *CharacterDB) GetByID(ctx context.Context, id int) (*entity.Character, e
 
 	query := `
 		SELECT id, name, created_at
-		FROM characters
+		FROM character
 		WHERE id = $1
 	`
 

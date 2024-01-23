@@ -1,14 +1,21 @@
 package cmd
 
 import (
-	"github.com/labstack/echo/v4"
+	"context"
+	"log"
+
 	"github.com/leguminosa/kounat/internal/app/kounatapi"
 	"github.com/leguminosa/kounat/internal/tools/config"
 )
 
 func Main() {
-	e := echo.New()
+	ctx := context.Background()
 	cfg := config.New()
 
-	e.Logger.Fatal(kounatapi.NewServer(e, cfg).Start())
+	server, err := kounatapi.InitServer(ctx, cfg)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	log.Fatalln(server.Start())
 }
