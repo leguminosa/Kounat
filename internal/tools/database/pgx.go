@@ -13,7 +13,7 @@ type PGXConnectionWrapper struct {
 	master, slave *pgxpool.Pool
 }
 
-func (c *PGXConnectionWrapper) GetMaster(ctx context.Context) (*pgxpool.Pool, error) {
+func (c *PGXConnectionWrapper) GetMaster(ctx context.Context) (tools.PGXPool, error) {
 	if c.master == nil {
 		return nil, errors.New("connection pool is nil")
 	}
@@ -21,7 +21,7 @@ func (c *PGXConnectionWrapper) GetMaster(ctx context.Context) (*pgxpool.Pool, er
 	return c.master, nil
 }
 
-func (c *PGXConnectionWrapper) GetSlave(ctx context.Context) (*pgxpool.Pool, error) {
+func (c *PGXConnectionWrapper) GetSlave(ctx context.Context) (tools.PGXPool, error) {
 	if c.slave == nil {
 		return nil, errors.New("connection pool is nil")
 	}
