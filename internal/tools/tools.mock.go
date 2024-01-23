@@ -6,60 +6,58 @@ package tools
 
 import (
 	context "context"
-	reflect "reflect"
-
 	gomock "github.com/golang/mock/gomock"
-	pgxpool "github.com/jackc/pgx/v5/pgxpool"
+	reflect "reflect"
 )
 
-// MockPGXClient is a mock of PGXClient interface.
+// MockPGXClient is a mock of PGXClient interface
 type MockPGXClient struct {
 	ctrl     *gomock.Controller
 	recorder *MockPGXClientMockRecorder
 }
 
-// MockPGXClientMockRecorder is the mock recorder for MockPGXClient.
+// MockPGXClientMockRecorder is the mock recorder for MockPGXClient
 type MockPGXClientMockRecorder struct {
 	mock *MockPGXClient
 }
 
-// NewMockPGXClient creates a new mock instance.
+// NewMockPGXClient creates a new mock instance
 func NewMockPGXClient(ctrl *gomock.Controller) *MockPGXClient {
 	mock := &MockPGXClient{ctrl: ctrl}
 	mock.recorder = &MockPGXClientMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use.
+// EXPECT returns an object that allows the caller to indicate expected use
 func (m *MockPGXClient) EXPECT() *MockPGXClientMockRecorder {
 	return m.recorder
 }
 
-// GetMaster mocks base method.
-func (m *MockPGXClient) GetMaster(ctx context.Context) (*pgxpool.Pool, error) {
+// GetMaster mocks base method
+func (m *MockPGXClient) GetMaster(ctx context.Context) (PGXPool, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetMaster", ctx)
-	ret0, _ := ret[0].(*pgxpool.Pool)
+	ret0, _ := ret[0].(PGXPool)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetMaster indicates an expected call of GetMaster.
+// GetMaster indicates an expected call of GetMaster
 func (mr *MockPGXClientMockRecorder) GetMaster(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetMaster", reflect.TypeOf((*MockPGXClient)(nil).GetMaster), ctx)
 }
 
-// GetSlave mocks base method.
-func (m *MockPGXClient) GetSlave(ctx context.Context) (*pgxpool.Pool, error) {
+// GetSlave mocks base method
+func (m *MockPGXClient) GetSlave(ctx context.Context) (PGXPool, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetSlave", ctx)
-	ret0, _ := ret[0].(*pgxpool.Pool)
+	ret0, _ := ret[0].(PGXPool)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetSlave indicates an expected call of GetSlave.
+// GetSlave indicates an expected call of GetSlave
 func (mr *MockPGXClientMockRecorder) GetSlave(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSlave", reflect.TypeOf((*MockPGXClient)(nil).GetSlave), ctx)
