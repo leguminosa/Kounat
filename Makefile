@@ -7,13 +7,17 @@ help: # List all available make commands.
 wire: # Generate wire_gen files.
 	@wire ./internal/app/kounatapi
 
-.PHONY: build # No need to actually build the binary here since we're running it using go run command anyway.
-build: wire # Prepare to run your application here.
+.PHONY: mockgen
+mockgen: # Generate mock files for all files with public interfaces.
+	@./scripts/mockgen.sh
 
 .PHONY: test
 test: # Run unit tests for the whole repository.
 	@go test -timeout 30s -short -count=1 -race -cover -coverprofile coverage.out -v ./...
 	@go tool cover -func coverage.out
+
+.PHONY: build # No need to actually build the binary here since we're running it using go run command anyway.
+build: wire # Prepare to run your application here.
 
 .PHONY: docker-start
 docker-start: # Start docker-compose in detached mode.
